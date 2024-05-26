@@ -22,6 +22,7 @@ for lib in $DEPS; do
 done
 
 cp ~/Cubyz-app/logo.icns ../Resources/Cubyz.icns
+cp ~/Cubyz-app/logo.png ../MacOS/logo.png
 cd ../MacOS
 
 cp -r ~/Cubyz/assets assets
