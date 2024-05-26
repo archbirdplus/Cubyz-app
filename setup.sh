@@ -21,6 +21,7 @@ for lib in $DEPS; do
     done
 done
 
+mkdir ../Resources
 cp ~/Cubyz-app/logo.icns ../Resources/Cubyz.icns
 cp ~/Cubyz-app/logo.png ../MacOS/logo.png
 cd ../MacOS
