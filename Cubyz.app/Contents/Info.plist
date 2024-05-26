@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 		<string>RunCubyzig.sh</string>
 	<key>CFBundleIconFile</key>
-		<string>Cubyzigui.icns</string>
+		<string>Cubyz.icns</string>
 	<key>CFBundleName</key>
 		<string>Cubyzigui</string>
 	<key>CFBundlePackageType</key>
