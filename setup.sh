@@ -37,7 +37,8 @@ cd ../MacOS
 
 cp -r "$SUPERDIR"/Cubyz/assets assets
 cp -r "$SUPERDIR"/Cubyz/saves saves
-cp "$SUPERDIR"/Cubyz/Cubyzig Cubyzig
+cp -r "$SUPERDIR"/Cubyz/settings.json settings.json
+cp "$SUPERDIR"/Cubyz/zig-out/bin/Cubyzig Cubyzig
 
 for dep in $DEPS; do
     args -change $dep "@rpath/`basename $dep`" Cubyzig

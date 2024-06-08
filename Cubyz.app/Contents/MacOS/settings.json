@@ -1,16 +1,18 @@
 {
 	"mouseSensitivity" : 1e0,
-	"renderDistance" : 3,
+	"renderDistance" : 4,
 	"fov" : 7e1,
+	"cpuThreads" : null,
 	"lastUsedIPAddress" : "79.198.226.36:47649",
 	"guiScale" : null,
 	"vsync" : false,
-	"musicVolume" : 1.0016776621341705e-2,
+	"resolutionScale" : 0,
 	"anisotropicFiltering" : false,
 	"entityDistance" : 2,
-	"developerAutoEnterWorld" : "",
+	"musicVolume" : 0e0,
 	"bloom" : false,
 	"storageTime" : 5000,
+	"developerAutoEnterWorld" : "",
 	"developerGPUInfiniteLoopDetection" : false,
 	"keyboard" : {
 		"secondaryGuiButton" : {
@@ -20,7 +22,7 @@
 		},
 		"backward" : {
 			"mouseButton" : -1,
-			"scancode" : 0,
+			"scancode" : 9,
 			"key" : 83
 		},
 		"gpuPerformanceOverlay" : {
@@ -35,8 +37,8 @@
 		},
 		"sprint" : {
 			"mouseButton" : -1,
-			"scancode" : 0,
-			"key" : 341
+			"scancode" : 66,
+			"key" : 346
 		},
 		"textNewline" : {
 			"mouseButton" : -1,
@@ -75,8 +77,8 @@
 		},
 		"takeBackgroundImage" : {
 			"mouseButton" : -1,
-			"scancode" : 0,
-			"key" : 283
+			"scancode" : 58,
+			"key" : 96
 		},
 		"textCursorLeft" : {
 			"mouseButton" : -1,
@@ -150,7 +152,7 @@
 		},
 		"forward" : {
 			"mouseButton" : -1,
-			"scancode" : 0,
+			"scancode" : 21,
 			"key" : 87
 		},
 		"right" : {
@@ -160,7 +162,7 @@
 		},
 		"textPaste" : {
 			"mouseButton" : -1,
-			"scancode" : 0,
+			"scancode" : 17,
 			"key" : 86
 		},
 		"openWorkbench" : {
