@@ -1,12 +1,15 @@
 #!/bin/bash
 
-SUPERDIR="$(dirname pwd)"
+SUPERDIR="$(dirname "$(dirname "$(realpath $0)")")"
+
+echo "SUPER $SUPERDIR"
 
 # cp -f /usr/local/GL/lib/libEGL.1.dylib
 if [ -f /usr/local/GL/lib/libGL.1.dylib ] && [ -f /usr/local/GL/lib/libglapi.0.dylib ]; then
     cp -f /usr/local/GL/lib/libGL.1.dylib /usr/local/GL/lib/libglapi.0.dylib Cubyz.app/Contents/Library
 else
     # TODO: fetch from Arch/Cubyz?
+    echo "there is no libGL"
 fi
 
 cd Cubyz.app/Contents/Library
@@ -24,6 +27,8 @@ for lib in $DEPS; do
         fi
     done
 done
+
+pwd
 
 mkdir ../Resources
 cp "$SUPERDIR"/Cubyz-app/logo.icns ../Resources/Cubyz.icns
