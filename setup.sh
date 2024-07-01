@@ -4,29 +4,25 @@ SUPERDIR="$(dirname "$(dirname "$(realpath $0)")")"
 
 echo "SUPER $SUPERDIR"
 
-# cp -f /usr/local/GL/lib/libEGL.1.dylib
-if [ -f /usr/local/GL/lib/libGL.1.dylib ] && [ -f /usr/local/GL/lib/libglapi.0.dylib ]; then
-    cp -f /usr/local/GL/lib/libGL.1.dylib /usr/local/GL/lib/libglapi.0.dylib Cubyz.app/Contents/Library
-else
-    # TODO: fetch from Arch/Cubyz?
-    echo "there is no libGL"
-fi
-
 cd Cubyz.app/Contents/Library
 
-DEPS="/usr/local/GL/lib/libGL.1.dylib /usr/local/GL/lib/libglapi.0.dylib"
-for lib in $DEPS; do
-    for dep in $DEPS; do
-        OP="-change"
-        if [ $dep = $lib ]; then
-            args -id `basename $lib` `basename $lib`
-            install_name_tool -id `basename $lib` `basename $lib`
-        else
-            args -change $dep "@rpath/`basename $dep`" `basename $lib`
-            install_name_tool -change $dep "@rpath/`basename $dep`" `basename $lib`
+ROOT_DEPS="libGL.1.dylib libglapi.0.dylib"
+
+include () {
+    dep=$1
+    install_name_tool -id $dep $dep
+    otool -L $dep | grep -v ':' | grep homebrew | awk '{print $1}' | while read homebrew_lib_path; do
+        dylib_name=`echo $homebrew_lib_path | grep -o '[^/]*dylib'`
+        if ! [ -f $homebrew_lib_path ]; then
+            brew_dep=`echo $homebrew_lib_path | awk -F '/' '{print $5}'`
+            echo "We need to install $brew_dep for $homebrew_lib_path"
+            brew install $brew_dep
         fi
+        echo "Copying $homebrew_lib_path into Library/"
+        cp $homebrew_lib_path .
+        install_name_tool $dep -change $homebrew_lib_path @loader_path/$dylib_name
     done
-done
+}
 
 pwd
 
@@ -36,7 +32,6 @@ cp "$SUPERDIR"/Cubyz-app/logo.png ../MacOS/logo.png
 cd ../MacOS
 
 cp -r "$SUPERDIR"/Cubyz/assets assets
-cp -r "$SUPERDIR"/Cubyz/saves saves
 cp -r "$SUPERDIR"/Cubyz/settings.json settings.json
 cp "$SUPERDIR"/Cubyz/zig-out/bin/Cubyzig Cubyzig
 
