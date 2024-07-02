@@ -21,7 +21,9 @@ include () {
         echo "Copying $homebrew_lib_path into Library/"
         cp $homebrew_lib_path .
         install_name_tool $dep -change $homebrew_lib_path @loader_path/$dylib_name
-        include $homebrew_lib_path
+        if ! [ -f $dylib_name ]; then
+            include $homebrew_lib_path
+        fi
     done
 }
 
