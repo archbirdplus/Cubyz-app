@@ -6,9 +6,6 @@ HAS_DEPS=1
 
 # Ideally this would prefer the /Applications official XQuartz, fallback to packaged.
 # In other news, all X11 libraries can be found in XQuartz, so we can avoid brew.
-if ! [ -f /opt/homebrew/opt/llvm/lib/libLLVM.dylib ]; then
-	HAS_DEPS=0
-fi
 if ! [ -r /Applications/Utilities/XQuartz.app ]; then
 	HAS_DEPS=0
 fi
