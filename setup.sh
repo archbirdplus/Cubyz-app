@@ -21,8 +21,13 @@ include () {
         echo "Copying $homebrew_lib_path into Library/"
         cp $homebrew_lib_path .
         install_name_tool $dep -change $homebrew_lib_path @loader_path/$dylib_name
+        include $homebrew_lib_path
     done
 }
+
+for root_dep in $ROOT_DEPS; do
+    include $root_dep
+done
 
 pwd
 
