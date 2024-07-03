@@ -4,14 +4,16 @@ cd "$(dirname "$0")"
 
 echo "Cubyz needs to install some dependencies."
 
-echo "Do you wish to install the necessary XQuartz and LLVM? (Enter a number)"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) break;;
-        No ) exit;;
-        * ) exit;;
-    esac
-done
+echo -n "Do you wish to install the dependency XQuartz? (yes/no) "
+read r
+case $r in
+    Yes | yes | y | Y ) break;;
+    * )
+        echo "Not installing"
+        echo "Press enter to close"
+        pause
+        exit;;
+esac
 
 echo "Installing XQuartz."
 
