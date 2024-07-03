@@ -20,10 +20,6 @@ echo "Installing XQuartz."
 # XQuartz replaces all of brew install libxrandr libxrender libxdmcp libxau libxcb libxext libx11
 wget https://github.com/XQuartz/XQuartz/releases/download/XQuartz-2.8.5/XQuartz-2.8.5.pkg -v -O ../Resources/XQuartz-2.8.5.pkg && open ../Resources/XQuartz-2.8.5.pkg
 
-echo "Installing LLVM-18."
-
-brew install llvm@18
-
 echo "Extra installation complete."
 echo "Press enter to continue..."
 
