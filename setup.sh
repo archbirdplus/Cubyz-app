@@ -17,7 +17,7 @@ include () {
         echo "$dep_name needs $dylib_name"
         if ! [ -f $homebrew_lib_path ]; then
             brew_dep=`echo $homebrew_lib_path | awk -F '/' '{print $5}'`
-            brew install brew_dep
+            brew install $brew_dep
         fi
         install_name_tool $dep_name -change $homebrew_lib_path @loader_path/$dylib_name 2>/dev/null
         if ! [ -f $dylib_name ]; then
