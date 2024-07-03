@@ -10,18 +10,19 @@ ROOT_DEPS="libGL.1.dylib libglapi.0.dylib"
 
 include () {
     dep=$1
-    install_name_tool -id $dep $dep
+    dep_name=`basename $dep`
+    install_name_tool -id $dep_name $dep_name 2>/dev/null
     otool -L $dep | grep -v ':' | grep homebrew | awk '{print $1}' | while read homebrew_lib_path; do
-        dylib_name=`echo $homebrew_lib_path | grep -o '[^/]*dylib'`
+        dylib_name=`basename $homebrew_lib_path`
+        echo "$dep_name needs $dylib_name"
         if ! [ -f $homebrew_lib_path ]; then
             brew_dep=`echo $homebrew_lib_path | awk -F '/' '{print $5}'`
-            echo "We need to install $brew_dep for $homebrew_lib_path"
-            brew install $brew_dep
+            brew install brew_dep
         fi
-        echo "Copying $homebrew_lib_path into Library/"
-        cp $homebrew_lib_path .
-        install_name_tool $dep -change $homebrew_lib_path @loader_path/$dylib_name
+        install_name_tool $dep_name -change $homebrew_lib_path @loader_path/$dylib_name 2>/dev/null
         if ! [ -f $dylib_name ]; then
+            echo " ... packaging $dylib_name"
+            cp $homebrew_lib_path .
             include $homebrew_lib_path
         fi
     done
