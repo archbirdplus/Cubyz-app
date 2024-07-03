@@ -9,14 +9,14 @@ cd Cubyz.app/Contents/Library
 ROOT_DEPS="libGL.1.dylib libglapi.0.dylib"
 
 include () {
-    dep=$1
-    dep_name=`basename $dep`
+    local dep=$1
+    local dep_name=`basename $dep`
     install_name_tool -id $dep_name $dep_name 2>/dev/null
     otool -L $dep | grep -v ':' | grep homebrew | awk '{print $1}' | while read homebrew_lib_path; do
-        dylib_name=`basename $homebrew_lib_path`
+        local dylib_name=`basename $homebrew_lib_path`
         echo "$dep_name needs $dylib_name"
         if ! [ -f $homebrew_lib_path ]; then
-            brew_dep=`echo $homebrew_lib_path | awk -F '/' '{print $5}'`
+            local brew_dep=`echo $homebrew_lib_path | awk -F '/' '{print $5}'`
             brew install $brew_dep
         fi
         install_name_tool $dep_name -change $homebrew_lib_path @loader_path/$dylib_name 2>/dev/null
