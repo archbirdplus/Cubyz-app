@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+       <key>CFBundleDevelopmentRegion</key>
+               <string>English</string>
+       <key>CFBundleExecutable</key>
+               <string>RunCubyzig.sh</string>
+       <key>CFBundleIconFile</key>
+               <string>Cubyz.icns</string>
+       <key>CFBundleName</key>
+               <string>Cubyzigui</string>
+       <key>CFBundlePackageType</key>
+               <string>APPL</string>
+       <key>SUEnableAutomaticChecks</key>
+               <true/>
+       <key>LSApplicationCategoryType</key>
+               <string>public.app-category.games</string>
+       <key>NSHumanReadableCopyright</key>
+               <string>© 2024 PixelGuys
+</string>
+</dict>
+</plist>
